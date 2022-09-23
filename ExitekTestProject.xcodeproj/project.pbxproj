@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		447A43B628DE1BFC00D9DE66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */; };
-		447A43B828DE1BFC00D9DE66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A43B728DE1BFC00D9DE66 /* SceneDelegate.swift */; };
-		447A43BA28DE1BFC00D9DE66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A43B928DE1BFC00D9DE66 /* ViewController.swift */; };
-		447A43BD28DE1BFC00D9DE66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447A43BB28DE1BFC00D9DE66 /* Main.storyboard */; };
+		447A43BA28DE1BFC00D9DE66 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447A43B928DE1BFC00D9DE66 /* MainVC.swift */; };
 		447A43C028DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 447A43BE28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld */; };
 		447A43C228DE1BFC00D9DE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A43C128DE1BFC00D9DE66 /* Assets.xcassets */; };
 		447A43C528DE1BFC00D9DE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */; };
+		BC1AD60265D612865E98AA0A /* Pods_ExitekTestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD291B0CDA4AAE64102F9DF1 /* Pods_ExitekTestProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		447A43B228DE1BFC00D9DE66 /* ExitekTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExitekTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		447A43B728DE1BFC00D9DE66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		447A43B928DE1BFC00D9DE66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		447A43BC28DE1BFC00D9DE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		447A43B928DE1BFC00D9DE66 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		447A43BF28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExitekTestProject.xcdatamodel; sourceTree = "<group>"; };
 		447A43C128DE1BFC00D9DE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		447A43C428DE1BFC00D9DE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		447A43C628DE1BFC00D9DE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80C20FCC6F93FD3A5800BC60 /* Pods-ExitekTestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExitekTestProject.debug.xcconfig"; path = "Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject.debug.xcconfig"; sourceTree = "<group>"; };
+		8C81F4331CBCCF296135BB00 /* Pods-ExitekTestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExitekTestProject.release.xcconfig"; path = "Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject.release.xcconfig"; sourceTree = "<group>"; };
+		BD291B0CDA4AAE64102F9DF1 /* Pods_ExitekTestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExitekTestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC1AD60265D612865E98AA0A /* Pods_ExitekTestProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +45,8 @@
 			children = (
 				447A43B428DE1BFC00D9DE66 /* ExitekTestProject */,
 				447A43B328DE1BFC00D9DE66 /* Products */,
+				F91C9ACA65514BE44ABD7CA2 /* Pods */,
+				4FC8A13A859BEECC9A8DEE7C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,15 +62,30 @@
 			isa = PBXGroup;
 			children = (
 				447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */,
-				447A43B728DE1BFC00D9DE66 /* SceneDelegate.swift */,
-				447A43B928DE1BFC00D9DE66 /* ViewController.swift */,
-				447A43BB28DE1BFC00D9DE66 /* Main.storyboard */,
+				447A43B928DE1BFC00D9DE66 /* MainVC.swift */,
 				447A43C128DE1BFC00D9DE66 /* Assets.xcassets */,
 				447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */,
 				447A43C628DE1BFC00D9DE66 /* Info.plist */,
 				447A43BE28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld */,
 			);
 			path = ExitekTestProject;
+			sourceTree = "<group>";
+		};
+		4FC8A13A859BEECC9A8DEE7C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BD291B0CDA4AAE64102F9DF1 /* Pods_ExitekTestProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F91C9ACA65514BE44ABD7CA2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80C20FCC6F93FD3A5800BC60 /* Pods-ExitekTestProject.debug.xcconfig */,
+				8C81F4331CBCCF296135BB00 /* Pods-ExitekTestProject.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,9 +95,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 447A43C928DE1BFC00D9DE66 /* Build configuration list for PBXNativeTarget "ExitekTestProject" */;
 			buildPhases = (
+				70F140332D0E4554A7B04D13 /* [CP] Check Pods Manifest.lock */,
 				447A43AE28DE1BFC00D9DE66 /* Sources */,
 				447A43AF28DE1BFC00D9DE66 /* Frameworks */,
 				447A43B028DE1BFC00D9DE66 /* Resources */,
+				7820BC0D52C5C07A7513F016 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -130,20 +150,60 @@
 			files = (
 				447A43C528DE1BFC00D9DE66 /* LaunchScreen.storyboard in Resources */,
 				447A43C228DE1BFC00D9DE66 /* Assets.xcassets in Resources */,
-				447A43BD28DE1BFC00D9DE66 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		70F140332D0E4554A7B04D13 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ExitekTestProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7820BC0D52C5C07A7513F016 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		447A43AE28DE1BFC00D9DE66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				447A43BA28DE1BFC00D9DE66 /* ViewController.swift in Sources */,
+				447A43BA28DE1BFC00D9DE66 /* MainVC.swift in Sources */,
 				447A43B628DE1BFC00D9DE66 /* AppDelegate.swift in Sources */,
-				447A43B828DE1BFC00D9DE66 /* SceneDelegate.swift in Sources */,
 				447A43C028DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,14 +211,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		447A43BB28DE1BFC00D9DE66 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				447A43BC28DE1BFC00D9DE66 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -286,6 +338,7 @@
 		};
 		447A43CA28DE1BFC00D9DE66 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80C20FCC6F93FD3A5800BC60 /* Pods-ExitekTestProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,7 +349,6 @@
 				INFOPLIST_FILE = ExitekTestProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,7 +356,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.exitektest.ExitekTestProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.exitektest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -314,6 +366,7 @@
 		};
 		447A43CB28DE1BFC00D9DE66 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C81F4331CBCCF296135BB00 /* Pods-ExitekTestProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,7 +377,6 @@
 				INFOPLIST_FILE = ExitekTestProject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -332,7 +384,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.exitektest.ExitekTestProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.smakhtin.exitektest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
