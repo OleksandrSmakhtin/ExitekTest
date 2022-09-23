@@ -1,0 +1,6 @@
+framework module Pods_ExitekTestProject {
+  umbrella header "Pods-ExitekTestProject-umbrella.h"
+
+  export *
+  module * { export * }
+}
