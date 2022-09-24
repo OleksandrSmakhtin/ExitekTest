@@ -21,20 +21,8 @@ class MainVC: UIViewController {
         searchBar.delegate = self
         configureView()
         mobiles = Array(mobileData.getAll())
-        print("-----------Mobiles------------")
-        print(mobiles)
-        print("------------------------------")
     }
-    
-    
-    func updateMobileTable() {
-        mobiles = Array(mobileData.getAll())
-        mobileTable.reloadData()
-        print("-----------Mobiles------------")
-        print(mobiles)
-        print("------------------------------")
-    }
-    
+
     @objc func addBtnPressed() {
         addDevice()
     }
@@ -42,26 +30,33 @@ class MainVC: UIViewController {
 
 
 //MARK: - TableView DataSource & Delegate
-
 extension MainVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func updateMobileTable() {
+        mobiles = Array(mobileData.getAll())
+        mobileTable.reloadData()
+    }
+    
+    // numbers of cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return temp.count
         return mobiles.count
     }
     
+    // configure cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mobileCell") as! MobileTableCell
-        //cell.configureCell(mobile: temp[indexPath.row])
         cell.configureCell(mobile: mobiles[indexPath.row])
         return cell
     }
     
+    // enable row editing
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
+    // add table view action
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
+        // configure delete action
         let deleteAction = UIContextualAction(style: .destructive, title: "") { action, view, completionHandler in
             view.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
             view.layer.cornerRadius = 15
@@ -86,7 +81,8 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - SearchBar Delegate
 extension MainVC: UISearchBarDelegate {
-
+    
+    // search bar search by input
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let device = mobileData.findByImei(searchBar.text!) {
             mobiles.removeAll()
@@ -102,6 +98,7 @@ extension MainVC: UISearchBarDelegate {
         
     }
     
+    // hide keyboard if there is no text in search bar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             updateMobileTable()
@@ -116,31 +113,31 @@ extension MainVC: UISearchBarDelegate {
 //MARK: - Alert Controllers
 extension MainVC {
     
+    // add new device alert
     func addDevice() {
         var modelTextField = UITextField()
         var imeiTextField = UITextField()
         
         let alert = UIAlertController(title: "Add device", message: "", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Add", style: .default) { action in
+            
             if let model = modelTextField.text, let imei = imeiTextField.text {
+                
                 if modelTextField.text != "" || imeiTextField.text != "" {
+                    
                     let newDevice = Mobile(context: self.context)
                     newDevice.model = modelTextField.text!
                     newDevice.imei = imeiTextField.text!
                     
                     if !self.mobileData.exists(newDevice) {
-                        print("--------------ALERT NOT EXISTS--------------")
                         do {
                             try self.mobiles.append(self.mobileData.save(newDevice))
-                            
                         } catch {
-                            print("alert error")
                         }
                         self.updateMobileTable()
                     } else {
                         try! self.mobileData.delete(newDevice)
                         self.addAlert(alertTitle: "ERROR", alertMessage: "Device with this IMEI already exists")
-                        print("--------------ALERT EXISTS--------------")
                     }
                 }
             }
@@ -160,6 +157,7 @@ extension MainVC {
         present(alert, animated: true, completion: nil)
     }
     
+    // add alert of specific title and message
     func addAlert(alertTitle: String, alertMessage: String) {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { action in
@@ -174,19 +172,14 @@ extension MainVC {
 extension MainVC {
     
     func configureView() {
+        
+        // background image
         let backgroundView = UIImageView(frame: view.bounds)
         backgroundView.image = UIImage(named: "background")
         backgroundView.contentMode = .scaleAspectFill
         view.insertSubview(backgroundView, at: 0)
         
-        let existButton = UIButton()
-        existButton.setImage(UIImage(named: "exist"), for: .normal)
-        view.addSubview(existButton)
-        existButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(15)
-            make.top.equalToSuperview().inset(60)
-        }
-        
+        // add button
         let addButton = UIButton()
         addButton.setImage(UIImage(named: "add"), for: .normal)
         addButton.addTarget(self, action: #selector(addBtnPressed), for: .touchUpInside)
@@ -199,11 +192,10 @@ extension MainVC {
         // searchBar
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
         searchBar.keyboardType = .numbersAndPunctuation
-        
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(45)
-            make.left.equalTo(existButton.snp_rightMargin).inset(-14)
+            make.left.equalToSuperview().inset(15)
             make.right.equalTo(addButton.snp_leftMargin).inset(-14)
         }
         

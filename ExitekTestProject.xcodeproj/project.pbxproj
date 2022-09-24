@@ -65,11 +65,11 @@
 		447A43B428DE1BFC00D9DE66 /* ExitekTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				44E4706828DFBF7E00067C67 /* AppDelegate */,
 				44B4B16C28DE3E91007336DB /* Model */,
 				44B4B16B28DE3E8A007336DB /* View */,
 				44B4B16A28DE3E80007336DB /* Controller */,
-				447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */,
-				447A43C128DE1BFC00D9DE66 /* Assets.xcassets */,
+				44E4706928DFBF8A00067C67 /* Resources */,
 				447A43C628DE1BFC00D9DE66 /* Info.plist */,
 			);
 			path = ExitekTestProject;
@@ -99,6 +99,22 @@
 				44B4B16828DE200B007336DB /* MobilesData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		44E4706828DFBF7E00067C67 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		44E4706928DFBF8A00067C67 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				447A43C128DE1BFC00D9DE66 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4FC8A13A859BEECC9A8DEE7C /* Frameworks */ = {

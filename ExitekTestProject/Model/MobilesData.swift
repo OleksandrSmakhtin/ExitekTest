@@ -44,12 +44,6 @@ struct MobilesData: MobileStorage {
         let optDevices = try? context.fetch(request) as? [Mobile]
         
         if let devices = optDevices {
-            print("---------DEV---------")
-            print(devices)
-            print("---------------------")
-            print("---------IMEI---------")
-            print(imei)
-            print("---------------------")
             for device in devices {
                 if device.imei == imei {
                     return device
