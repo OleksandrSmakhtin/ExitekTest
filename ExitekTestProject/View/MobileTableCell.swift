@@ -8,12 +8,14 @@
 import UIKit
 import CoreData
 
+//MARK: - TABLE CELL
 class MobileTableCell: UITableViewCell {
 
+    //MARK: - UI ELEMENTS
     let modelLbl = UILabel()
     let imeiLbl = UILabel()
     
-    
+    //MARK: - INIT
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         // disable selection
@@ -26,16 +28,14 @@ class MobileTableCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    func configureCell(mobile: Mobile) {
-//        modelLbl.text = "Model: \(mobile.model)"
-//        imeiLbl.text = "IMEI: \(mobile.imei)"
-//    }
+
+    //MARK: - CONFIGURE CELL
     func configureCell(mobile: Mobile) {
         modelLbl.text = "Model: \(mobile.model!)"
         imeiLbl.text = "IMEI: \(mobile.imei!)"
     }
-    
+
+    //MARK: - CONFIGURE VIEW
     func configureView() {
         // content view
         contentView.clipsToBounds = true
@@ -53,6 +53,7 @@ class MobileTableCell: UITableViewCell {
         
     }
     
+    //MARK: - CONSTRAINTS
     // set constarints
     override func layoutSubviews() {
         super.layoutSubviews()

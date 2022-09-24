@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import UIKit
 
+//MARK: - MOBILE STORAGE PROTOCOL
 protocol MobileStorage {
     func getAll() -> Set<Mobile>
     func findByImei(_ imei: String) -> Mobile?
@@ -17,13 +18,13 @@ protocol MobileStorage {
     func exists(_ product: Mobile) -> Bool
 }
 
-
+//MARK: - MOBILE DATA
 struct MobilesData: MobileStorage {
     
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-    
+    //MARK: - GET ALL
     func getAll() -> Set<Mobile> {
         let request = Mobile.fetchRequest()
         var mobilesSet = Set<Mobile>()
@@ -37,15 +38,12 @@ struct MobilesData: MobileStorage {
     }
     
     
-    
-    
+    //MARK: - FIND BY IMEI
     func findByImei(_ imei: String) -> Mobile? {
         return Mobile()
     }
     
-    
-    
-    
+    //MARK: - SAVE
     func save(_ mobile: Mobile) throws -> Mobile {
         do {
             try context.save()
@@ -56,15 +54,13 @@ struct MobilesData: MobileStorage {
     }
     
     
-    
-    
+    //MARK: - DELETE
     func delete(_ product: Mobile) throws {
         context.delete(product)
     }
     
     
-    
-    
+    //MARK: - EXISTS
     func exists(_ product: Mobile) -> Bool {
         let request = Mobile.fetchRequest()
         var mobiles = [Mobile]()
@@ -77,18 +73,22 @@ struct MobilesData: MobileStorage {
         print(mobiles)
         print("-------------Product---------------")
         print(product)
-
-        if mobiles.contains(product) {
+        print("-------------------PRODUCT IMEI\(product.imei)")
+        var check = 0
+        for mobile in mobiles {
+            print("--------------------\(mobile.imei)")
+            if product.imei == mobile.imei {
+                print("--------------CHECK +1")
+                check += 1
+            }
+        }
+        if check > 1 {
+            print("------------ITEM EXISTS-------------")
             return true
         } else {
+            print("------------ITEM DOES'T EXISTS-------")
             return false
         }
     }
 
-}
-
-
-struct Temp {
-    let model: String
-    let imei: String
 }

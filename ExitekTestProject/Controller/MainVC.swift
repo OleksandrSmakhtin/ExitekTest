@@ -10,12 +10,10 @@ import SnapKit
 import CoreData
 class MainVC: UIViewController {
 
-    
     let mobileData = MobilesData()
     let mobileTable = UITableView()
     var mobiles = [Mobile]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +23,6 @@ class MainVC: UIViewController {
         print(mobiles)
         print("------------------------------")
     }
-    var temp = [
-        Temp(model: "iPhone 12", imei: "5645763456724576245"),
-        Temp(model: "iPhone 13", imei: "2342453456724576245"),
-        Temp(model: "iPhone 14", imei: "2342453456724576245"),
-        Temp(model: "iPhone 12", imei: "5645763456724576245"),
-        Temp(model: "iPhone 13", imei: "2342453456724576245"),
-        Temp(model: "iPhone 14", imei: "2342453456724576245")
-    ]
     
     
     func updateMobileTable() {
@@ -44,34 +34,87 @@ class MainVC: UIViewController {
     }
     
     @objc func addBtnPressed() {
+        addModel()
+    }
+}
+
+
+//MARK: - TableView DataSource & Delegate
+
+extension MainVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return temp.count
+        return mobiles.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mobileCell") as! MobileTableCell
+        //cell.configureCell(mobile: temp[indexPath.row])
+        cell.configureCell(mobile: mobiles[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { action, view, completionHandler in
+            view.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
+            view.layer.cornerRadius = 15
+            
+            let mobile = self.mobiles[indexPath.row]
+            try! self.mobileData.delete(mobile)
+            self.mobiles.remove(at: indexPath.row)
+            self.mobileTable.deleteRows(at: [indexPath], with: .left)
+            try! self.mobileData.save(mobile)
+            self.updateMobileTable()
+            
+            completionHandler(true)
+        }
+        deleteAction.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
+        deleteAction.image = UIImage(named: "delete")
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
+    }
+    
+    
+}
+
+//MARK: - Alert Controllers
+extension MainVC {
+    
+    func addModel() {
         var modelTextField = UITextField()
         var imeiTextField = UITextField()
         
         let alert = UIAlertController(title: "Add device", message: "", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { action in
+        let deleteAction = UIAlertAction(title: "Add", style: .default) { action in
             if let model = modelTextField.text, let imei = imeiTextField.text {
-                
-                let newDevice = Mobile(context: self.context)
-                newDevice.model = modelTextField.text!
-                newDevice.imei = imeiTextField.text!
-                
-                
-                if self.mobileData.exists(newDevice) {
-                    print("--------------EXISTS--------------")
-                    do {
-                        try self.mobiles.append(self.mobileData.save(newDevice))
-
-                    } catch {
-                        print("alert error")
+                if modelTextField.text != "" || imeiTextField.text != "" {
+                    let newDevice = Mobile(context: self.context)
+                    newDevice.model = modelTextField.text!
+                    newDevice.imei = imeiTextField.text!
+                    
+                    if !self.mobileData.exists(newDevice) {
+                        print("--------------ALERT NOT EXISTS--------------")
+                        do {
+                            try self.mobiles.append(self.mobileData.save(newDevice))
+                            
+                        } catch {
+                            print("alert error")
+                        }
+                        self.updateMobileTable()
+                    } else {
+                        try! self.mobileData.delete(newDevice)
+                        self.alreadyExists()
+                        print("--------------ALERT EXISTS--------------")
                     }
-                    self.updateMobileTable()
-                } else {
-                    print("--------------NOT EXISTS--------------")
                 }
-                
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
         
         alert.addTextField { alertTextField in
             alertTextField.placeholder = "Model"
@@ -81,12 +124,23 @@ class MainVC: UIViewController {
             alertTextField.placeholder = "IMEI"
             imeiTextField = alertTextField
         }
-        
-        alert.addAction(action)
+        alert.addAction(cancelAction)
+        alert.addAction(deleteAction)
         present(alert, animated: true, completion: nil)
     }
     
-    
+    func alreadyExists() {
+        let alert = UIAlertController(title: "Error", message: "Device with this IMEI already exists", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { action in
+            print("ITEM ALREADY EXISTS")
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+}
+
+//MARK: - CONFIGURE VIEW
+extension MainVC {
     
     func configureView() {
         let backgroundView = UIImageView(frame: view.bounds)
@@ -143,55 +197,5 @@ class MainVC: UIViewController {
             mobileTable.delegate = self
             mobileTable.dataSource = self
         }
-        
-        
     }
-        
-    
-}
-
-
-//MARK: - TableView DataSource & Delegate
-
-extension MainVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return temp.count
-        return mobiles.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mobileCell") as! MobileTableCell
-        //cell.configureCell(mobile: temp[indexPath.row])
-        cell.configureCell(mobile: mobiles[indexPath.row])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { action, view, completionHandler in
-            view.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
-            view.layer.cornerRadius = 15
-            
-            let mobile = self.mobiles[indexPath.row]
-            try! self.mobileData.delete(mobile)
-            self.mobiles.remove(at: indexPath.row)
-            self.mobileTable.deleteRows(at: [indexPath], with: .left)
-            try! self.mobileData.save(mobile)
-            self.updateMobileTable()
-            
-            
-            
-            completionHandler(true)
-        }
-        deleteAction.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
-        deleteAction.image = UIImage(named: "delete")
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configuration
-    }
-    
-    
 }
