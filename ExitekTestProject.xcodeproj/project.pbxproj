@@ -12,6 +12,8 @@
 		447A43C028DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 447A43BE28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld */; };
 		447A43C228DE1BFC00D9DE66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 447A43C128DE1BFC00D9DE66 /* Assets.xcassets */; };
 		447A43C528DE1BFC00D9DE66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */; };
+		44B4B16928DE200B007336DB /* MobilesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B4B16828DE200B007336DB /* MobilesData.swift */; };
+		44B4B16E28DE4778007336DB /* MobileTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B4B16D28DE4778007336DB /* MobileTableCell.swift */; };
 		BC1AD60265D612865E98AA0A /* Pods_ExitekTestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD291B0CDA4AAE64102F9DF1 /* Pods_ExitekTestProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		447A43C128DE1BFC00D9DE66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		447A43C428DE1BFC00D9DE66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		447A43C628DE1BFC00D9DE66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44B4B16828DE200B007336DB /* MobilesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilesData.swift; sourceTree = "<group>"; };
+		44B4B16D28DE4778007336DB /* MobileTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileTableCell.swift; sourceTree = "<group>"; };
 		80C20FCC6F93FD3A5800BC60 /* Pods-ExitekTestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExitekTestProject.debug.xcconfig"; path = "Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject.debug.xcconfig"; sourceTree = "<group>"; };
 		8C81F4331CBCCF296135BB00 /* Pods-ExitekTestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExitekTestProject.release.xcconfig"; path = "Target Support Files/Pods-ExitekTestProject/Pods-ExitekTestProject.release.xcconfig"; sourceTree = "<group>"; };
 		BD291B0CDA4AAE64102F9DF1 /* Pods_ExitekTestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExitekTestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,14 +65,40 @@
 		447A43B428DE1BFC00D9DE66 /* ExitekTestProject */ = {
 			isa = PBXGroup;
 			children = (
+				44B4B16C28DE3E91007336DB /* Model */,
+				44B4B16B28DE3E8A007336DB /* View */,
+				44B4B16A28DE3E80007336DB /* Controller */,
 				447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */,
-				447A43B928DE1BFC00D9DE66 /* MainVC.swift */,
 				447A43C128DE1BFC00D9DE66 /* Assets.xcassets */,
 				447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */,
 				447A43C628DE1BFC00D9DE66 /* Info.plist */,
-				447A43BE28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld */,
 			);
 			path = ExitekTestProject;
+			sourceTree = "<group>";
+		};
+		44B4B16A28DE3E80007336DB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				447A43B928DE1BFC00D9DE66 /* MainVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		44B4B16B28DE3E8A007336DB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				44B4B16D28DE4778007336DB /* MobileTableCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		44B4B16C28DE3E91007336DB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				447A43BE28DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld */,
+				44B4B16828DE200B007336DB /* MobilesData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4FC8A13A859BEECC9A8DEE7C /* Frameworks */ = {
@@ -203,6 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				447A43BA28DE1BFC00D9DE66 /* MainVC.swift in Sources */,
+				44B4B16E28DE4778007336DB /* MobileTableCell.swift in Sources */,
+				44B4B16928DE200B007336DB /* MobilesData.swift in Sources */,
 				447A43B628DE1BFC00D9DE66 /* AppDelegate.swift in Sources */,
 				447A43C028DE1BFC00D9DE66 /* ExitekTestProject.xcdatamodeld in Sources */,
 			);
