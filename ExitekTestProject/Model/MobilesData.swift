@@ -40,7 +40,23 @@ struct MobilesData: MobileStorage {
     
     //MARK: - FIND BY IMEI
     func findByImei(_ imei: String) -> Mobile? {
-        return Mobile()
+        let request: NSFetchRequest<Mobile> = Mobile.fetchRequest()
+        let optDevices = try? context.fetch(request) as? [Mobile]
+        
+        if let devices = optDevices {
+            print("---------DEV---------")
+            print(devices)
+            print("---------------------")
+            print("---------IMEI---------")
+            print(imei)
+            print("---------------------")
+            for device in devices {
+                if device.imei == imei {
+                    return device
+                }
+            }
+        }
+        return nil
     }
     
     //MARK: - SAVE
@@ -69,24 +85,15 @@ struct MobilesData: MobileStorage {
         } catch {
             print("Exist error")
         }
-        print("-----------Total mobiles-----------")
-        print(mobiles)
-        print("-------------Product---------------")
-        print(product)
-        print("-------------------PRODUCT IMEI\(product.imei)")
         var check = 0
         for mobile in mobiles {
-            print("--------------------\(mobile.imei)")
             if product.imei == mobile.imei {
-                print("--------------CHECK +1")
                 check += 1
             }
         }
         if check > 1 {
-            print("------------ITEM EXISTS-------------")
             return true
         } else {
-            print("------------ITEM DOES'T EXISTS-------")
             return false
         }
     }

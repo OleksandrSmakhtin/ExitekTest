@@ -70,7 +70,6 @@
 				44B4B16A28DE3E80007336DB /* Controller */,
 				447A43B528DE1BFC00D9DE66 /* AppDelegate.swift */,
 				447A43C128DE1BFC00D9DE66 /* Assets.xcassets */,
-				447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */,
 				447A43C628DE1BFC00D9DE66 /* Info.plist */,
 			);
 			path = ExitekTestProject;
@@ -87,6 +86,7 @@
 		44B4B16B28DE3E8A007336DB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				447A43C328DE1BFC00D9DE66 /* LaunchScreen.storyboard */,
 				44B4B16D28DE4778007336DB /* MobileTableCell.swift */,
 			);
 			path = View;

@@ -12,11 +12,13 @@ class MainVC: UIViewController {
 
     let mobileData = MobilesData()
     let mobileTable = UITableView()
+    let searchBar = UISearchBar()
     var mobiles = [Mobile]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         configureView()
         mobiles = Array(mobileData.getAll())
         print("-----------Mobiles------------")
@@ -34,7 +36,7 @@ class MainVC: UIViewController {
     }
     
     @objc func addBtnPressed() {
-        addModel()
+        addDevice()
     }
 }
 
@@ -82,10 +84,39 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+//MARK: - SearchBar Delegate
+extension MainVC: UISearchBarDelegate {
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let device = mobileData.findByImei(searchBar.text!) {
+            mobiles.removeAll()
+            mobiles.append(device)
+            mobileTable.reloadData()
+        } else {
+            addAlert(alertTitle: "ERROR", alertMessage: "Type full IMEI or try again")
+        }
+        DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+        }
+
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            updateMobileTable()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+}
+
 //MARK: - Alert Controllers
 extension MainVC {
     
-    func addModel() {
+    func addDevice() {
         var modelTextField = UITextField()
         var imeiTextField = UITextField()
         
@@ -108,7 +139,7 @@ extension MainVC {
                         self.updateMobileTable()
                     } else {
                         try! self.mobileData.delete(newDevice)
-                        self.alreadyExists()
+                        self.addAlert(alertTitle: "ERROR", alertMessage: "Device with this IMEI already exists")
                         print("--------------ALERT EXISTS--------------")
                     }
                 }
@@ -129,8 +160,8 @@ extension MainVC {
         present(alert, animated: true, completion: nil)
     }
     
-    func alreadyExists() {
-        let alert = UIAlertController(title: "Error", message: "Device with this IMEI already exists", preferredStyle: .alert)
+    func addAlert(alertTitle: String, alertMessage: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { action in
             print("ITEM ALREADY EXISTS")
         }
@@ -165,8 +196,9 @@ extension MainVC {
             make.right.equalToSuperview().inset(15)
         }
         
-        let searchBar = UISearchBar()
+        // searchBar
         searchBar.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+        searchBar.keyboardType = .numbersAndPunctuation
         
         view.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
