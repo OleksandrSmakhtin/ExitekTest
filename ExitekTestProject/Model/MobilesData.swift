@@ -77,7 +77,7 @@ struct MobilesData: MobileStorage {
         print(mobiles)
         print("-------------Product---------------")
         print(product)
-        
+
         if mobiles.contains(product) {
             return true
         } else {

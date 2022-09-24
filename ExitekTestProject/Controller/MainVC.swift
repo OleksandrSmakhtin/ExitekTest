@@ -57,14 +57,17 @@ class MainVC: UIViewController {
                 newDevice.imei = imeiTextField.text!
                 
                 
-                if self.mobileData.exists(newDevice) == true {
+                if self.mobileData.exists(newDevice) {
+                    print("--------------EXISTS--------------")
                     do {
                         try self.mobiles.append(self.mobileData.save(newDevice))
-                        
+
                     } catch {
                         print("alert error")
                     }
                     self.updateMobileTable()
+                } else {
+                    print("--------------NOT EXISTS--------------")
                 }
                 
             }
@@ -172,6 +175,16 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         let deleteAction = UIContextualAction(style: .destructive, title: "") { action, view, completionHandler in
             view.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
             view.layer.cornerRadius = 15
+            
+            let mobile = self.mobiles[indexPath.row]
+            try! self.mobileData.delete(mobile)
+            self.mobiles.remove(at: indexPath.row)
+            self.mobileTable.deleteRows(at: [indexPath], with: .left)
+            try! self.mobileData.save(mobile)
+            self.updateMobileTable()
+            
+            
+            
             completionHandler(true)
         }
         deleteAction.backgroundColor = #colorLiteral(red: 0.3098039329, green: 0.01568627544, blue: 0.1294117719, alpha: 0)
